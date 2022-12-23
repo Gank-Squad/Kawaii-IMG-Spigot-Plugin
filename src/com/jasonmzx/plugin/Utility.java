@@ -2,7 +2,9 @@ package com.jasonmzx.plugin;
 
 import java.util.ArrayList;
 
-public class Utility {
+public abstract class Utility {
+	
+	final static String relDirectoryPath = "plugins/Kawaii_IMG_Folder/"; 
 	
 	public static String matchBlock(ArrayList<BlockSample> samples, int red, int green, int blue) {
 		
@@ -70,5 +72,6 @@ public class Utility {
 	return sortedSamples.get(0).blockId;	
 	
 	} //END OF matchBlock
+	
 	
 } // END OF Utility Class

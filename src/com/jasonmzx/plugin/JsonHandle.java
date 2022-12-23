@@ -21,7 +21,7 @@ class PlayerJSONobject {
 	}	
 }
 
-public class JsonHandle {
+public abstract class JsonHandle {
 		
 	//#########################################
 	//Wrapper for reading Local JSON files
@@ -98,7 +98,6 @@ public class JsonHandle {
 				pos = uPositions[i];
 			}
 			
-			Bukkit.broadcastMessage(pos);
 
 			int posInt = Integer.parseInt(pos);
 			empty[i] = posInt;					
@@ -112,31 +111,28 @@ public class JsonHandle {
 	
 	public static void createUser(String username) {
 		
-		Bukkit.broadcastMessage("[WGP] creating user");
-		
 		//Reads the filePath and stores the json parsed via JSONObject class  
-		JSONObject playerCoordData = readJSONFile("plugins/wallGenData.json");
+		JSONObject playerCoordData = readJSONFile(Utility.relDirectoryPath + "wallGenData.json");
 				
 		//Initializing Players [ x1 , y1 , z1 , x2 , y2 , z2 ] positions as 0 (default)
 		JSONArray positions = new JSONArray();
 				
-				for(int x = 0; x < 6; x++) {
-					positions.add(0);	
-				}
+		for(int x = 0; x < 6; x++) {
+			positions.add(0);	
+		}
 				
 		playerCoordData.put(username, positions);
 				
-		boolean Write = writeAndCloseJSONFile("plugins/wallGenData.json", playerCoordData);
+		boolean Write = writeAndCloseJSONFile(Utility.relDirectoryPath + "wallGenData.json", playerCoordData);
 		
 	}
 	
 	public static void setPlayerCoords(String username, int[] newPositions, boolean back) {
 		
-		Bukkit.broadcastMessage("[WGP] Setting Coords");
 		
 		JSONParser parser = new JSONParser();
 
-		JSONObject jsonObject = readJSONFile("plugins/wallGenData.json");	
+		JSONObject jsonObject = readJSONFile(Utility.relDirectoryPath + "wallGenData.json");	
 				
 				
 			Object userObject = jsonObject.get(username); 
@@ -168,7 +164,7 @@ public class JsonHandle {
 			jsonObject.put(username, jsonPositions);
 				
 			//Now write
-			boolean Write = writeAndCloseJSONFile("plugins/wallGenData.json", jsonObject);
+			boolean Write = writeAndCloseJSONFile(Utility.relDirectoryPath + "wallGenData.json", jsonObject);
 		
 	}
 	
@@ -179,7 +175,7 @@ public class JsonHandle {
 		
 		//Reading:					
 
-		JSONObject jsonObject = readJSONFile("plugins/wallGenData.json");	
+		JSONObject jsonObject = readJSONFile(Utility.relDirectoryPath + "wallGenData.json");	
 							
 		Object userObject = jsonObject.get(username); 
 		//Class userObjectClass = userObject.getClass();

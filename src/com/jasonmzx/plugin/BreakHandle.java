@@ -30,8 +30,6 @@ public class BreakHandle implements Listener {
     	
     	if(mainhand.getType() == Material.GOLDEN_AXE ) {
     		
-    		Bukkit.broadcastMessage(playerObject.getName() );
-    		
     		Block blockObject = event.getBlock();
     		
     		event.setCancelled(true);
@@ -42,13 +40,9 @@ public class BreakHandle implements Listener {
     				blockObject.getZ(),
     		};
     		
-    		
-    		//Set the first & second entry of JSON array to break:
-    		
+    		//Set the first & second entry of JSON array to break:  		
     		JsonHandle.setPlayerCoords(playerObject.getName(), newPositions, false);
-    		
+  	
     	}
-    	
-    	 Bukkit.broadcastMessage("Broke");
     }
 }

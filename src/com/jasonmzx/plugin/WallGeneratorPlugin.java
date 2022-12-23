@@ -9,22 +9,26 @@ import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONObject;
 
+import java.sql.Connection;  
+import java.sql.DriverManager;  
+import java.sql.SQLException;  
+
+
+
 public class WallGeneratorPlugin extends JavaPlugin {
     
 	
-	public void generateJSON() {
+	public void initialize() {
 		
 		JSONObject obj = new JSONObject();
 
-		String JSONpath = "plugins/wallGenData.json";
+		String JSONpath = Utility.relDirectoryPath +"wallGenData.json";
 		
 		File f = new File(JSONpath);
-		
 		
 		if(f.exists()) {
 			Bukkit.getLogger().severe("[WGP] JSON File already exists! ");
 		} 
-		
 		else {
 			try {
 
@@ -45,8 +49,7 @@ public class WallGeneratorPlugin extends JavaPlugin {
 	@Override
     public void onEnable() {
 		
-		generateJSON();
-		
+		initialize(); //This JSON file is the cursor reference for every player
 		
 		getServer().getPluginManager().registerEvents(new JoinHandle(), this);
 		getServer().getPluginManager().registerEvents(new BreakHandle(), this);
