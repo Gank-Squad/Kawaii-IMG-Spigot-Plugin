@@ -1,0 +1,13 @@
+name: WallGeneratorPlugin
+main: com.jasonmzx.plugin.WallGeneratorPlugin
+version: 1.0
+api-version: 1.19
+commands:
+   kit:
+      description: Your description
+      usage: /<command>
+      permission: WallGeneratorPlugin.kit
+   image: 
+      description: Create an image!
+      usage: /<command>
+      permission: WallGeneratorPlugin.image
